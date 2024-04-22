@@ -11,6 +11,5 @@ class ArithemticModel {
   int add() {
     return first + second + 1;
   }
-
-  // Sub
 }
+ 

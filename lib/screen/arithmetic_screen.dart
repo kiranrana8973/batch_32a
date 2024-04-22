@@ -32,75 +32,141 @@ class _ArithmeticScreenState extends State<ArithmeticScreen> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Form(
-          key: formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                onChanged: (value) {
-                  first = int.parse(value);
-                },
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter First No',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Enter first no";
-                  }
-                  return null;
-                },
+      body: Form(
+        key: formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextFormField(
+              onChanged: (value) {
+                first = int.parse(value);
+              },
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Enter First No',
               ),
-              const SizedBox(height: 8),
-              TextFormField(
-                onChanged: (value) {
-                  second = int.parse(value);
-                },
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter Second No',
-                ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Enter First no";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 8),
+            TextFormField(
+              onChanged: (value) {
+                second = int.parse(value);
+              },
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Enter Second No',
               ),
-              const SizedBox(height: 8),
-              // Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    setState(
-                      () {
-                        // //Al;gorith,m
-                        // // Business logic
-                        // result = first! + second!;
-                        arithemticModel =
-                            ArithemticModel(first: first!, second: second!);
-                        result = arithemticModel!.add();
-                      },
-                    );
-                  },
-                  child: const Text(
-                    'Add',
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
+            ),
+            const SizedBox(height: 8),
+            // Button
+            ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  // Validate cha bhane balla code execute gara
+                  setState(
+                    () {
+                      arithemticModel = ArithemticModel(
+                        first: first!,
+                        second: second!,
+                      );
+                      result = arithemticModel!.add();
+                    },
+                  );
+                }
+              },
+              child: const Text(
+                'Add',
+                style: TextStyle(
+                  fontSize: 25,
                 ),
               ),
-              const SizedBox(height: 8),
-
-              // Display informatuion
-              Text(
-                'Sum is : $result',
-                style: const TextStyle(
-                  fontSize: 30,
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  // Validate cha bhane balla code execute gara
+                  setState(
+                    () {
+                      arithemticModel = ArithemticModel(
+                        first: first!,
+                        second: second!,
+                      );
+                      result = arithemticModel!.add();
+                    },
+                  );
+                }
+              },
+              child: const Text(
+                'Add',
+                style: TextStyle(
+                  fontSize: 25,
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  // Validate cha bhane balla code execute gara
+                  setState(
+                    () {
+                      arithemticModel = ArithemticModel(
+                        first: first!,
+                        second: second!,
+                      );
+                      result = arithemticModel!.add();
+                    },
+                  );
+                }
+              },
+              child: const Text(
+                'Add',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  // Validate cha bhane balla code execute gara
+                  setState(
+                    () {
+                      arithemticModel = ArithemticModel(
+                        first: first!,
+                        second: second!,
+                      );
+                      result = arithemticModel!.add();
+                    },
+                  );
+                }
+              },
+              child: const Text(
+                'Add',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            // Display informatuion
+            Text(
+              'Sum is : $result',
+              style: const TextStyle(
+                fontSize: 30,
+              ),
+            ),
+          ],
         ),
       ),
     );

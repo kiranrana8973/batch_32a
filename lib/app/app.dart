@@ -1,4 +1,4 @@
-import 'package:batch_32a/screen/hello_world_screen.dart';
+import 'package:batch_32a/screen/arithmetic_screen.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -8,7 +8,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       // themes
-      home: HelloWorldScreen(),
+      home: ArithmeticScreen(),
     );
   }
 }
