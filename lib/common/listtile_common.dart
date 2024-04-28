@@ -1,3 +1,4 @@
+import 'package:batch_32a/screen/output_screen.dart';
 import 'package:flutter/material.dart';
 
 class CommonListTile extends StatelessWidget {
@@ -11,9 +12,16 @@ class CommonListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.abc_outlined),
-      title: Text('Title ${index + 1}'),
+      title: Text('Title $index'),
       subtitle: const Text('Subtitle'),
       trailing: const Icon(Icons.delete),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return OutputScreen(
+            fullName: 'Title $index',
+          );
+        }));
+      },
     );
   }
 }
