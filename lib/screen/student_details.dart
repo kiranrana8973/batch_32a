@@ -11,15 +11,34 @@ class StudentDetailsScreen extends StatefulWidget {
 class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
   final _gap = const SizedBox(height: 10);
 
-  final _fnameController = TextEditingController();
-  final _lnameController = TextEditingController();
-  final _cityController = TextEditingController();
+  late TextEditingController _fnameController;
+  late TextEditingController _lnameController;
+  late TextEditingController _cityController;
 
-  final cities = [
-    const DropdownMenuItem(value: 'Kathmandu', child: Text('Kathmandu')),
-    const DropdownMenuItem(value: 'Bhaktapur', child: Text('Bhaktapur')),
-    const DropdownMenuItem(value: 'Lalitpur', child: Text('Lalitpur')),
-  ];
+  List<DropdownMenuItem> cities = [];
+
+// initalization
+  @override
+  void initState() {
+    _fnameController = TextEditingController(text: 'Kiran');
+    _lnameController = TextEditingController(text: 'Rana');
+    _cityController = TextEditingController();
+
+    cities = [
+      const DropdownMenuItem(value: 'Kathmandu', child: Text('Kathmandu')),
+      const DropdownMenuItem(value: 'Bhaktapur', child: Text('Bhaktapur')),
+      const DropdownMenuItem(value: 'Lalitpur', child: Text('Lalitpur')),
+    ];
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _fnameController.dispose();
+    _lnameController.dispose();
+    _cityController.dispose();
+    super.dispose();
+  }
 
   final _key = GlobalKey<FormState>();
 
@@ -105,25 +124,30 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                 style: TextStyle(fontSize: 20),
               ),
               _gap,
-              Expanded(
-                child: ListView.builder(
-                  itemCount: students.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(students[index].fname),
-                      subtitle: Text(students[index].city),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.delete),
-                        onPressed: () {
-                          setState(() {
-                            students.removeAt(index);
-                          });
+              students.isEmpty
+                  ? const Text("No Data")
+                  : Expanded(
+                      child: ListView.builder(
+                        itemCount: students.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: const Icon(
+                              Icons.stacked_bar_chart,
+                            ),
+                            title: Text(students[index].fname),
+                            subtitle: Text(students[index].city),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () {
+                                setState(() {
+                                  students.removeAt(index);
+                                });
+                              },
+                            ),
+                          );
                         },
                       ),
-                    );
-                  },
-                ),
-              ),
+                    ),
             ],
           ),
         ),

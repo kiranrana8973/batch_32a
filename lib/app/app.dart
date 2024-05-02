@@ -11,5 +11,6 @@ class App extends StatelessWidget {
       // themes
       home: StudentDetailsScreen(),
     );
+    
   }
 }
