@@ -1,5 +1,6 @@
 import 'package:batch_32a/model/student.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class StudentDetailsScreen extends StatefulWidget {
   const StudentDetailsScreen({super.key});
@@ -20,7 +21,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
 // initalization
   @override
   void initState() {
-    _fnameController = TextEditingController(text: 'Kiran');
+    _fnameController = TextEditingController();
     _lnameController = TextEditingController(text: 'Rana');
     _cityController = TextEditingController();
 
@@ -56,9 +57,19 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
           child: Column(
             children: [
               TextFormField(
+                style: const TextStyle(fontSize: 30),
+                textAlign: TextAlign.end,
                 controller: _fnameController,
+                // limit the character to 10 digit
+                maxLength: 10,
+                // show the num keyboard
+                keyboardType: TextInputType.number,
+                // do not allow charater typing
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
                 decoration: const InputDecoration(
-                  hintText: 'First Name',
+                  hintText: '0',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -130,19 +141,35 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
                       child: ListView.builder(
                         itemCount: students.length,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: const Icon(
-                              Icons.stacked_bar_chart,
-                            ),
-                            title: Text(students[index].fname),
-                            subtitle: Text(students[index].city),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {
-                                setState(() {
-                                  students.removeAt(index);
-                                });
-                              },
+                          // return ListTile(
+                          //   leading: const Icon(
+                          //     Icons.stacked_bar_chart,
+                          //   ),
+                          //   title: Text(students[index].fname),
+                          //   subtitle: Text(students[index].city),
+                          //   trailing: IconButton(
+                          //     icon: const Icon(Icons.delete),
+                          //     onPressed: () {
+                          //       setState(() {
+                          //         students.removeAt(index);
+                          //       });
+                          //     },
+                          //   ),
+                          // );
+
+                          return SizedBox(
+                            height: 150,
+                            width: double.infinity,
+                            child: Card(
+                              color: Colors.amber,
+                              child: Center(
+                                child: Text(
+                                  students[index].fname,
+                                  style: const TextStyle(
+                                    fontSize: 30,
+                                  ),
+                                ),
+                              ),
                             ),
                           );
                         },

@@ -1,4 +1,4 @@
-import 'package:batch_32a/screen/student_details.dart';
+import 'package:batch_32a/screen/calculator_screen.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -9,8 +9,7 @@ class App extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       // themes
-      home: StudentDetailsScreen(),
+      home: CalculatorScreen(),
     );
-    
   }
 }
